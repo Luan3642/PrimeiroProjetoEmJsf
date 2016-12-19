@@ -1,7 +1,9 @@
 
 package br.com.alldirect.Bean;
 
+import br.com.alldirect.dao.CarroDao;
 import br.com.alldirect.model.Carro;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +17,9 @@ public class CarroBean {
     private Carro carro = new Carro();
     private List<Carro> carros = new ArrayList<>();
     
-    public void adicionaCarro(){
+    public void adicionaCarro() throws SQLException{
        carros.add(carro);
+       new CarroDao().adicionaCarro(carro);
        carro = new Carro();
 }
 
