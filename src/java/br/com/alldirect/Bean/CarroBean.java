@@ -17,7 +17,7 @@ public class CarroBean {
     private Carro carro = new Carro();
     private List<Carro> carros = new ArrayList<>();
     
-    public void adicionaCarro() throws SQLException{
+    public void adiciona() throws SQLException{
        carros.add(carro);
        new CarroDao().adicionaCarro(carro);
        carro = new Carro();

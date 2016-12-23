@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
+    
 //Classe de conexão 
-
     public Connection getConnection() {
         try {
             String driverName = "com.mysql.jdbc.Driver";
             Class.forName(driverName);
             String serverName = "127.0.0.1:3306";
-            String myDataBase = "sistemaCarros";
+            String myDataBase = "sistemacarros";
             String url = "jdbc:mysql://" + serverName + "/" + myDataBase;
             String userName = "root";
             String passWord = "123456";
@@ -27,5 +27,4 @@ public class ConnectionFactory {
             return null;
         }
     }
-
 }
