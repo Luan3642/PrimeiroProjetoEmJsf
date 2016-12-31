@@ -1,13 +1,11 @@
 package br.com.alldirect.model;
 
-import java.sql.Date;
-
 public class Carro {
 
     private String modelo;
     private String fabricante;
     private String cor;
-    private Date ano;
+    private int ano;
 
     public String getModelo() {
         return modelo;
@@ -33,11 +31,11 @@ public class Carro {
         this.cor = cor;
     }
 
-    public Date getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
