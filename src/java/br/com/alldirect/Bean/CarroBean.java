@@ -25,6 +25,10 @@ public class CarroBean {
     public void listar() {
         carros = carrodao.listarCarros();
     }
+    
+    public void editar(Carro c){
+        carro = c;
+    }
 
     public Carro getCarro() {
         return carro;

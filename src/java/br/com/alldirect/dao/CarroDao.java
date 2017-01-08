@@ -22,9 +22,14 @@ public class CarroDao {
     }
 
     public void adicionaCarro(Carro carro) throws SQLException {
-        String sql = "INSERT INTO CARRO (MODELO_CARRO,FABRICANTE_CARRO,COR_CARRO,ANO_CARRO) VALUES (?,?,?,?)";
+        if (carro.getId() == null) {
+            stmt = conecta.prepareStatement("INSERT INTO CARRO (MODELO_CARRO,FABRICANTE_CARRO,COR_CARRO,ANO_CARRO) VALUES (?,?,?,?)");
+        } else {
+            stmt = conecta.prepareStatement("update carro set MODELO_CARRO=?, FABRICANTE_CARRO=?, COR_CARRO=?, ANO_CARRO=?, where id=?");
+            stmt.setInt(5, carro.getId());
+        }
+
         try {
-            stmt = conecta.prepareStatement(sql);
             stmt.setString(1, carro.getModelo());
             stmt.setString(2, carro.getFabricante());
             stmt.setString(3, carro.getCor());
@@ -40,22 +45,22 @@ public class CarroDao {
         try {
             this.conecta = new ConnectionFactory().getConnection();
             PreparedStatement stmt = conecta.prepareStatement("SELECT * FROM CARRO");
-            ResultSet resultSet = stmt.executeQuery();
+            rs = stmt.executeQuery();
             List<Carro> carros = new ArrayList<Carro>();
-            while (resultSet.next()) {
+            while (rs.next()) {
                 Carro carro = new Carro();
-                carro.setId(resultSet.getInt("ID_CARRO"));
-                carro.setModelo(resultSet.getString("MODELO_CARRO"));
-                carro.setFabricante(resultSet.getString("FABRICANTE_CARRO"));
-                carro.setCor(resultSet.getString("COR_CARRO"));
-                carro.setAno(resultSet.getInt("ANO_CARRO"));
+                carro.setId(rs.getInt("ID_CARRO"));
+                carro.setModelo(rs.getString("MODELO_CARRO"));
+                carro.setFabricante(rs.getString("FABRICANTE_CARRO"));
+                carro.setCor(rs.getString("COR_CARRO"));
+                carro.setAno(rs.getInt("ANO_CARRO"));
                 carros.add(carro);
             }
-             return carros;
+            return carros;
 
         } catch (SQLException e) {
             Logger.getLogger(CarroDao.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
-    }  
+    }
 }

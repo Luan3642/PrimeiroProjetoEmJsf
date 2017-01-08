@@ -2,24 +2,26 @@ package br.com.alldirect.model;
 
 public class Carro {
 
-    private int id;
+    private Integer id;
     private String modelo;
     private String fabricante;
     private String cor;
     private int ano;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+    
 
     public String getModelo() {
         return modelo;
     }
-
+    
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
