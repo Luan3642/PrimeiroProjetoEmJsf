@@ -3,10 +3,13 @@ package br.com.alldirect.dao;
 import br.com.alldirect.connection.ConnectionFactory;
 import br.com.alldirect.model.Carro;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CarroDao {
 
@@ -29,7 +32,30 @@ public class CarroDao {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possível conectar a sua base " + e);
+            System.out.println("Não foi possível conectar a sua base" + e);
         }
     }
+
+    public List<Carro> listarCarros() {
+        try {
+            this.conecta = new ConnectionFactory().getConnection();
+            PreparedStatement stmt = conecta.prepareStatement("SELECT * FROM CARRO");
+            ResultSet resultSet = stmt.executeQuery();
+            List<Carro> carros = new ArrayList<Carro>();
+            while (resultSet.next()) {
+                Carro carro = new Carro();
+                carro.setId(resultSet.getInt("ID_CARRO"));
+                carro.setModelo(resultSet.getString("MODELO_CARRO"));
+                carro.setFabricante(resultSet.getString("FABRICANTE_CARRO"));
+                carro.setCor(resultSet.getString("COR_CARRO"));
+                carro.setAno(resultSet.getInt("ANO_CARRO"));
+                carros.add(carro);
+            }
+             return carros;
+
+        } catch (SQLException e) {
+            Logger.getLogger(CarroDao.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }  
 }
