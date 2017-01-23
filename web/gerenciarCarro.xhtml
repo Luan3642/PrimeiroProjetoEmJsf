@@ -12,6 +12,9 @@
                 <p:commandButton value="Listar" action="#{carroBean.listar}" update="@form"></p:commandButton>
             </p:toolbarGroup>
         </p:toolbar>
+        <!--<p:messages autoUpdate="true" showDetail="true">
+            
+        </p:messages>-->
         <br></br>
         <p:fieldset legend="Objetos">
             <p:panelGrid columns="2">
@@ -22,11 +25,12 @@
                 <h:outputLabel value="Cor"></h:outputLabel>
                 <p:inputText value="#{carroBean.carro.cor}"></p:inputText>
                 <h:outputLabel value="Ano"></h:outputLabel>
-                <p:inputMask value="#{carroBean.carro.ano}" mask=" 9999"></p:inputMask>
+                <p:inputText value="#{carroBean.carro.ano}"></p:inputText>
             </p:panelGrid>
             <p:dataTable value="#{carroBean.carros}" var="carro">
                 <p:column>
                     <p:commandButton value="Editar" action="#{carroBean.editar(carro)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Excluir" action="#{carroBean.deletar(carro)}" update="@form"></p:commandButton>
                 </p:column>
                 <p:column headerText="Modelo" sortBy="#{carro.modelo}">
                     <h:outputText value="#{carro.modelo}"></h:outputText>

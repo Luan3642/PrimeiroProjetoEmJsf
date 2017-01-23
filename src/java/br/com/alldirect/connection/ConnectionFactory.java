@@ -3,10 +3,9 @@ package br.com.alldirect.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 public class ConnectionFactory {
     
-//Classe de conexão 
+    //Classe de conexão 
     public Connection getConnection() {
         try {
             String driverName = "com.mysql.jdbc.Driver";

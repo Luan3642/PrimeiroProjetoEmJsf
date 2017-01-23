@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CarroDao {
 
@@ -17,7 +15,7 @@ public class CarroDao {
     private ResultSet rs;
     private Connection conecta;
 
-    public CarroDao() {
+    public CarroDao(){
         this.conecta = new ConnectionFactory().getConnection();
     }
 
@@ -28,7 +26,6 @@ public class CarroDao {
             stmt = conecta.prepareStatement("update carro set MODELO_CARRO=?, FABRICANTE_CARRO=?, COR_CARRO=?, ANO_CARRO=?, where id=?");
             stmt.setInt(5, carro.getId());
         }
-
         try {
             stmt.setString(1, carro.getModelo());
             stmt.setString(2, carro.getFabricante());
@@ -41,10 +38,22 @@ public class CarroDao {
         }
     }
 
-    public List<Carro> listarCarros() {
+    public void deletarCarro(Integer idCarro){
+        String sql = "DELETE FROM CARRO WHERE = ?";
+        try {
+            stmt = conecta.prepareStatement(sql);
+            stmt.setInt(1, idCarro);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println("Não foi possível deletar\n"+ e );
+        }
+    }
+
+    public List<Carro> listarCarros(){
         try {
             this.conecta = new ConnectionFactory().getConnection();
-            PreparedStatement stmt = conecta.prepareStatement("SELECT * FROM CARRO");
+            stmt = conecta.prepareStatement("SELECT * FROM CARRO");
             rs = stmt.executeQuery();
             List<Carro> carros = new ArrayList<Carro>();
             while (rs.next()) {
@@ -59,7 +68,7 @@ public class CarroDao {
             return carros;
 
         } catch (SQLException e) {
-            Logger.getLogger(CarroDao.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Não foi possível listar " + e);
             return null;
         }
     }
