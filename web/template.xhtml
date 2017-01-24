@@ -4,18 +4,27 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <h:head>
         <title>Sistema Carros</title>
     </h:head>
     <h:body>
+        <style>
+            body{
+                background-image: url(img/fundo_carrousel.png);
+            }
+            .qualquer{
+                color: white;
+            }
+        </style>
         <link rel="icon" href="img/autobot.png" type="image/x-icon" />
-        <h1>Sistema de carros</h1><hr></hr>
+        <h1 style="font-family: Arial" class="qualquer" align="center" >Sistema de carros</h1><hr></hr>
         <p:menubar>
             <p:menuitem value="Home" url="index.xhtml"></p:menuitem>
             <p:menuitem value="Comprar Carros" url="gerenciarCarro.xhtml"></p:menuitem>
         </p:menubar>
         <p:dock position="bottom">
-            <p:menuitem value="SACc" icon="img/Customer-service-icon.png" url="#"/>
+            <p:menuitem value="SAC" icon="img/Customer-service-icon.png" url="#"/>
             <p:menuitem value="Car" icon="img/Sportscar-car-2-icon.png" url="gerenciarCarro.xhtml"/>
             <p:menuitem value="Email" icon="img/Mail-icon.png" url="#"/>
             <p:menuitem value="Imagem" icon="img/index-img-icon.png" url="#"/>

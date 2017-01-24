@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui">
+              <link rel="icon" href="img/autobot.png" type="image/x-icon" />
+    <h:form>
+        <p:commandButton value="adicionar" action="#{carroBean.mudarParaAdicionar()}"></p:commandButton>
+        <p:commandButton value="listar" action="#{carroBean.mudarParaListar()}"></p:commandButton>
+        <p:commandButton value="editar" action="#{carroBean.mudarParaEditar()}"></p:commandButton>
+        <h:outputText value="Adicionar" rendered="#{carroBean.adiciona}"></h:outputText>
+        <h:outputText value="Editar" rendered="#{carroBean.editar}"></h:outputText>
+        <h:outputText value="Listar" rendered="#{carroBean.listar}"></h:outputText>
+    </h:form>
+</ui:decorate>
+

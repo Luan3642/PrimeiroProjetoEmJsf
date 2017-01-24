@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarroDao {
+public class CarroDao implements CrudDao<Carro> {
 
     private PreparedStatement stmt;
     private ResultSet rs;
     private Connection conecta;
 
-    public CarroDao(){
+    public CarroDao() {
         this.conecta = new ConnectionFactory().getConnection();
     }
 
@@ -38,19 +38,19 @@ public class CarroDao {
         }
     }
 
-    public void deletarCarro(Integer idCarro){
+    public void deletarCarro(Carro carro) {
         String sql = "DELETE FROM CARRO WHERE ID_CARRO= ?";
         try {
             stmt = conecta.prepareStatement(sql);
-            stmt.setInt(1, idCarro);
+            stmt.setInt(1, carro.getId());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possível deletar\n"+ e );
+            System.out.println("Não foi possível deletar\n" + e);
         }
     }
 
-    public List<Carro> listarCarros(){
+    public List<Carro> listarCarros() {
         try {
             this.conecta = new ConnectionFactory().getConnection();
             stmt = conecta.prepareStatement("SELECT * FROM CARRO");
@@ -71,5 +71,20 @@ public class CarroDao {
             System.out.println("Não foi possível listar " + e);
             return null;
         }
+    }
+
+    @Override
+    public void adicionar(Carro entendidade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deletar(Carro entidadade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Carro> listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
