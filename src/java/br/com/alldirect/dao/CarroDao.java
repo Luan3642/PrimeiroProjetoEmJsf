@@ -39,7 +39,7 @@ public class CarroDao {
     }
 
     public void deletarCarro(Integer idCarro){
-        String sql = "DELETE FROM CARRO WHERE = ?";
+        String sql = "DELETE FROM CARRO WHERE ID_CARRO= ?";
         try {
             stmt = conecta.prepareStatement(sql);
             stmt.setInt(1, idCarro);

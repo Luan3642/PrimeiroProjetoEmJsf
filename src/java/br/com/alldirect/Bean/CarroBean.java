@@ -5,14 +5,12 @@ import br.com.alldirect.model.Carro;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class CarroBean {
+public class CarroBean implements java.io.Serializable{
 
     private Carro carro = new Carro();
     private List<Carro> carros = new ArrayList<>();
@@ -27,7 +25,7 @@ public class CarroBean {
         }
     } 
 
-    public void deletar(Carro c){
+        public void deletar(Carro c){
         carroDao.deletarCarro(c.getId());
     }
     public void listar(){
